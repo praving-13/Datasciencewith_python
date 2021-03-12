@@ -1,0 +1,73 @@
+Character Recognition:
+Character Recognition process helps in the recognition of each text element with the accuracy of the characters.
+The accuracy of classification and identification of characters or text elements in an image is measured by applying deep learning algorithms. These characters make a lot of difference in literature.
+When we apply normal random techniques for recognition of characters may give some errors at a particular point. If we use deep learning OpenCV algorithm will give an effective output.
+For the first way of approach to run our model, one has to install tesseract which is developed by Google as an optical character recognition engine.
+pip install pytesseract
+OpenCV:
+Open CV is a deep learning technique where we mainly used to execute the data by calculating many eliminations of noises.
+Open CV is the most popularly used algorithm in the branch of deep learning techniques.
+It makes the colossally reliant on the data appeared from the trained characters and helps in recognizing the text present in the image. Open CV makes the missing accuracy of an algorithm into a picture. Gray scaling gives a valid classification in the field of character recognition. So hereby we import all the necessary packages for making our model into a good track.
+In order to install OpenCV in your local computer use this command...
+pip install opencv-python
+Can an image be directly read from the code?
+Let's discuss what is affecting to recognize the characters:
+Noising in an image causes many factors of false recognition of characters. for ensuring noise-free in our recognition eliminate in code.
+When the image is not high resolution then identification fails. So, it is better to take a high-resolution image for accuracy in the result.
+Sometimes the angle of the image also defects.
+Reflection of an image makes incorrect in the assumption of text. It makes to identify the letter “F” as “P” like that so many.
+Fonts also vary the results if the code isn’t able to train it.
+Various images have various styles of representation of the art, so, when there is more color complexion or multiple colors make incorrect assumptions of recognition text in an image.
+Considering all the above factors in mind one have to build the code accordingly where all the test cases passes.
+Python code for recognizing characters using OpenCV:
+This code can be downloaded for your easy understanding of approach to the recognition.
+Importing all the packages:
+#import all the packages
+import cv2
+import numpy as np
+import pytesseract
+from PIL import Image
+once you install with the packages import those into code.
+Declare or initialize the path:
+A tesseract is an open-source tool it can be downloaded online. After downloading mention its path like below.
+# path of pytesseract execution folder 
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+# Path of image
+main_path = r'qu12.png'
+Main Method:
+In this part of code, we are implementing
+Read the image
+Greyscale the image
+Do dilation and erosion to eliminate unwanted noises in the picture.
+Write the image after the removal of the noise.
+Apply the threshold to get the only black and white pictures.
+Write the same image for the further recognition process.
+Character recognition with Tesseract.
+def get_string(pic_path):
+    # Reading picture with opencv
+    pic = cv2.imread(pic_path)
+# grey-scale the picture
+    pic = cv2.cvtColor(pic, cv2.COLOR_BGR2GRAY)
+# Do dilation and erosion to eliminate unwanted noises
+    kernel = np.ones((1, 1), np.uint8)
+    pic = cv2.dilate(pic, kernel, iterations=20)
+    pic = cv2.erode(pic, kernel, iterations=20)
+# Write image after removed noise
+    cv2.imwrite(main_path + "no_noise.png", pic)
+#  threshold applying to get only black and white picture 
+    pic = cv2.adaptiveThreshold(pic, 300, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 31, 2)
+# Write the image for later recognition process 
+    cv2.imwrite(main_path + "threshold.png", pic)
+# Character recognition with tesseract
+    final = pytesseract.image_to_string(Image.open(main_path + "threshold.png"))
+return final
+Display the final output:
+print(get_string(src_path))
+Inputs and outputs:
+Here we give the inputs which we have given to our code and outputs which we got later execution of our code.
+Input:
+Image for post
+Taken from the internet for sample recognition
+Output:
+Image for post
+Screenshot after the execution of code

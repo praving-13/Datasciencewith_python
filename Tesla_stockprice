@@ -1,0 +1,59 @@
+Tesla is an amAmericanlectric vehicle company whose aim is to accelerate the world’s transition towards sustainable energy. A few days back the rise in the stock prices of Tesla made Elon Musk the richest person in the world. Predicting stock prices is a great use case of machine learning, so in this article, I will take you through the task of Tesla Stock Price Prediction with Machine Learning using Python.
+
+
+ 
+Tesla Stock Price Prediction with Machine Learning
+Predicting Stock prices is a great use case of machine learning both for financial and time series analysis. Tesla has been in the eyes of the world for a long time now as governments of so many countries all over the world are supporting the vision of Tesla. So in this article, I will take you through a tutorial on how to use the Facebook Prophet model for the task of stock price prediction of Tesla.
+
+The dataset that I will be using here has been downloaded from yahoo finance. To download this dataset simply visit yahoo finance and search for TSLA. You will see a dashboard as shown in the image below:
+
+TSLA dataset
+Here you have to click on the historical prices and then click on download. The dataset will be downloaded as “TSLA.csv”.
+
+Tesla Stock Price Prediction using Python
+I hope you have easily downloaded the historical data of the stock prices of Tesla by following the steps mentioned in the above section. Now let’s see how to predict the stock prices of Tesla with Machine Learning using Python. Here I will start by importing the necessary Python libraries and the dataset:
+
+
+ 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from fbprophet import Prophet
+
+data = pd.read_csv("TSLA.csv")
+data.head()
+view rawtsla.py hosted with ❤ by GitHub
+Tesla stock price data
+Before moving forward let’s visualize the “Close” column in the dataset which represents close prices of each day:
+
+close = data['Close']
+ax = close.plot(title='Tesla')
+ax.set_xlabel('Date')
+ax.set_ylabel('Close')
+plt.show()
+view rawtsla.py hosted with ❤ by GitHub
+close prices
+We only need two columns from this dataset (Date and Close), so let’s create a new DataFrame with only these two columns:
+
+1
+data["Date"] = pd.to_datetime(data["Date"], infer_datetime_format=True)
+2
+data = data[["Date", "Close"]]
+As we are using the Facebook prophet model here for predicting the stock prices of Tesla so we need to rename the columns:
+
+data = data.rename(columns={"Date" : "ds", "Close" : "y" })
+So we have prepared the dataset for the Facebook prophet model, now let’s predict the stock prices of Tesla:
+
+
+ 
+model = Prophet()
+model.fit(data)
+predict = model.make_future_dataframe(periods=365)
+forcast = model.predict(predict)
+forcast[["ds", "yhat", "yhat_lower", "yhat_upper"]].tail()
+view rawtsla.py hosted with ❤ by GitHub
+facebook prophet model predictions
+graph = model.plot(forcast, xlabel="Date", ylabel="Price")
+Tesla stock price prediction
+Conclusion
+It seems like Tesla’s stock prices will decrease in the coming future if they don’t come up with a new idea of representing their vision. This may be possible as other companies have also started manufacturing electric vehicles at a very low price as compared to Tesla.

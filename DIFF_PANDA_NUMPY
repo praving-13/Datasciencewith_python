@@ -1,0 +1,95 @@
+Comparison Parameter
+
+NumPy
+
+Pandas
+
+Powerful Tool
+
+A powerful tool of NumPy is Arrays
+
+A powerful tool of Pandas is Data frames and a Series
+
+Memory Consumption
+
+NumPy is memory efficient
+
+Pandas consume more memory
+
+Data Compatibility
+
+Works with numerical data
+
+Works with tabular data
+
+Performance
+
+Better performance when the number of rows is 50K or less
+
+Better performance when the number of rows is 500k or more
+
+Speed
+
+Faster than data frames
+
+Relatively slower than arrays
+
+Data Object
+
+Creates “N” dimensional objects
+
+Creates “2D” objects
+
+Type of Data
+
+Homogenous data type
+
+Heterogenous data type
+
+Access Methods
+
+Using only index position
+
+Using index position or index labels
+
+Indexing
+
+Indexing in NumPy arrays is very fast
+
+Indexing in Pandas series is very slow
+
+Operations
+
+Does not have any additional functions
+
+Provides special utilities such as “groupby” to access and manipulate subsets
+
+External Data
+
+Generally used data created by the user or built-in function
+
+Pandas object created by external data such as CSV, Excel, or SQL
+
+Industrial Coverage
+
+NumPy is mentioned in 62 company stack and 32 developers stack
+
+Pandas are mentioned in 73 company stack and 46 developers stack
+
+Application
+
+NumPy is popular for numerical calculations
+
+Pandas is popular for data analysis and visualizations
+
+Usage in ML and AI
+
+Toolkits can like TensorFlow and scikit can only be fed using NumPy arrays
+
+Pandas series cannot be directly fed as input toolkits
+
+Core Language
+
+NumPy was written in C programming initially
+
+Pandas use R language for reference language
